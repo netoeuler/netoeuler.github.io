@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Comparando Candidaturas</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous"/>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script
+    src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body ng-app="app" ng-controller="PageController">
+
+<h1>Comparando Campanhas</h1>
+
+<div class="container">
+
+  <section id="candidatos" class="row">
+    <figure ng-repeat="candidato in candidatos"
+            ng-class="(candidato.id == selecao1.id) || (candidato.id == selecao2.id) || (candidato.id == selecao3.id)  ? 'selecao' : ''"
+            ng-click="selecionar(candidato)"
+            class="col-xs-4 col-sm-2 col-md-1">
+      <img class="img-circle"
+           ng-src="http://divulgacandcontas.tse.jus.br/divulga/rest/v1/candidatura/buscar/foto/2/{{candidato.id}}"
+           alt="{{candidato.nome}}">
+      <h2>{{candidato.nome}}</h2>
+    </figure>
+  </section>
+
+  <section id="cards" class="row">
+    <div class="col-md-12">
+
+      <div class="col-md-4">
+        <h2 ng-if="!selecao1">Selecione o candidato 1</h2>
+        <div class="card" ng-if="selecao1" card ng-candidato="selecao1"></div>
+      </div>
+
+      <div class="col-md-4">
+        <h2 ng-if="!selecao2">Selecione o candidato 2</h2>
+        <div class="card" ng-if="selecao2" card ng-candidato="selecao2"></div>
+      </div>
+
+      <div class="col-md-4">
+        <h2 ng-if="!selecao3">Selecione o candidato 3</h2>
+        <div class="card" ng-if="selecao3" card ng-candidato="selecao3"></div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/templates.js"></script>
+</body>
+</html>
